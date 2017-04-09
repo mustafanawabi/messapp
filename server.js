@@ -1,5 +1,11 @@
 /*
-  to start the server in debug mode:
+  REST APIs to get, post, and delete messages
+  You can also check if a message is a palindrome
+
+  To start the server:
+  node server.js
+
+  To start the server in debug mode:
   set DEBUG=express:* & node server.js
 */
 
@@ -8,8 +14,7 @@ let app = express();
 let bodyParser = require('body-parser');
 let MongoClient = require('mongodb').MongoClient;
 let ObjectId = require('mongodb').ObjectID;
-
-let isPalindrome = require('./palindrome');
+let palindrome = require('./lib/palindrome');
 
 const DB_URL = 'mongodb://localhost:27017/palindrome';
 const MESSAGES_COLLECTION = 'messages';
@@ -22,6 +27,7 @@ app.use(bodyParser.json());
 //   extended: true
 // }));
 
+// GET all messages
 app.get('/api/messages', function(req, res) {
   MongoClient.connect(DB_URL, function(err, db) {
     if (err) return err;
@@ -37,6 +43,7 @@ app.get('/api/messages', function(req, res) {
   });
 });
 
+// GET specific a message based on the id
 app.get('/api/messages/:id', function(req, res) {
   MongoClient.connect(DB_URL, function(err, db) {
     if (err) return err;
@@ -57,6 +64,7 @@ app.get('/api/messages/:id', function(req, res) {
   });
 });
 
+// GET specific a message based on the id and check if it is a palindrome
 app.get('/api/messages/:id/palindrome', function(req, res) {
   MongoClient.connect(DB_URL, function(err, db) {
     if (err) return err;
@@ -72,12 +80,13 @@ app.get('/api/messages/:id/palindrome', function(req, res) {
           return;
         }
 
-        let result = isPalindrome(message.text);
-        res.json({ 'isPalindrome': result });
+        let result = palindrome(message.text);
+        res.json({ 'palindrome': result });
       });
   });
 });
 
+// POST a message
 app.post('/api/message', function(req, res) {
   MongoClient.connect(DB_URL, function(err, db) {
     if (err) return err;
@@ -92,6 +101,7 @@ app.post('/api/message', function(req, res) {
   });
 });
 
+// DELETE a message based on the id
 app.delete('/api/message/:id', function(req, res) {
   MongoClient.connect(DB_URL, function(err, db) {
     if (err) return err;
