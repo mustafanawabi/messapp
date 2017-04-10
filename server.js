@@ -29,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('./controllers/views.js'));
 app.use('/api/messages', require('./controllers/messages.js'));
 
+// connect to the db
 db.connect();
 
 app.listen(port, function() {
