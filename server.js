@@ -1,5 +1,5 @@
 /*
-  REST APIs to get, post, and deconste messages
+  REST APIs to get, post, and delete messages
   You can also check if a message is a palindrome
 
   To start the server:

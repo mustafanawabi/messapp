@@ -3,9 +3,25 @@ const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
 const palindrome = require('../lib/palindrome');
-
 const DB_URL = 'mongodb://localhost:27017/palindrome';
 const MESSAGES_COLLECTION = 'messages';
+const MESSAGE_SCHEMA = require('../models/message');
+const validator = require('jsonschema').validate;
+
+// middleware to validate messages
+router.use(function(req, res, next) {
+  if (req.method == 'POST') {
+    let message = req.body;
+    let validatorResult = validator(message, MESSAGE_SCHEMA);
+
+    if (validatorResult.errors.length > 0) {
+      res.status(400).send(validatorResult.errors[0].stack);
+      return;
+    }
+  }
+
+  next();
+});
 
 // GET all messages
 router.get('/', function(req, res) {
