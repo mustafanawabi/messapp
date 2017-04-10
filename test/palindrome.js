@@ -3,7 +3,7 @@ let palindrome = require('../lib/palindrome');
 
 describe('palindromes', function() {
   describe('simple palindromes', function() {
-    let texts = ['',' ', 'anna', 'murdrum', 'Redder', 'My gym'];
+    let texts = ['', ' ', 'anna', 'murdrum', 'Redder', 'My gym'];
 
     for (let text of texts) {
       it(text + ' is a palindrome', function() {

@@ -4,7 +4,9 @@
   "description": "app for posting messages and checking for palindromes",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec",
+    "lint": "eslint lib/**",
+    "jsdoc": "jsdoc lib/palindrome.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +19,11 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^3.2.0"
+    "eslint": "^3.19.0",
+    "eslint-config-google": "^0.7.1",
+    "install": "^0.8.8",
+    "jsdoc": "^3.4.3",
+    "mocha": "^3.2.0",
+    "npm": "^4.4.4"
   }
 }
