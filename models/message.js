@@ -1,9 +1,9 @@
 const messageSchema = {
-  "properties": {
-    "text": { "type": "string" },
-    "user": { "type": "string" }
+  'properties': {
+    'text': {'type': 'string'},
+    'user': {'type': 'string'},
   },
-  "required": ["text"]
-}
+  'required': ['text'],
+};
 
 module.exports = messageSchema;

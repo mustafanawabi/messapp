@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
@@ -46,7 +46,7 @@ router.get('/:id', function(req, res) {
 
     let id = req.params.id;
     db.collection(MESSAGES_COLLECTION)
-      .findOne({ '_id': ObjectId(id) }, function(err, message) {
+      .findOne({'_id': ObjectId(id)}, function(err, message) {
         db.close();
         if (err) return err;
 
@@ -67,7 +67,7 @@ router.get('/:id/palindrome', function(req, res) {
 
     let id = req.params.id;
     db.collection(MESSAGES_COLLECTION)
-      .findOne({ '_id': ObjectId(id) }, function(err, message) {
+      .findOne({'_id': ObjectId(id)}, function(err, message) {
         db.close();
         if (err) return err;
 
@@ -77,7 +77,7 @@ router.get('/:id/palindrome', function(req, res) {
         }
 
         let result = palindrome(message.text);
-        res.json({ 'palindrome': result });
+        res.json({'palindrome': result});
       });
   });
 });
@@ -104,7 +104,7 @@ router.delete('/:id', function(req, res) {
 
     let id = req.params.id;
     db.collection(MESSAGES_COLLECTION)
-      .findAndRemove({ '_id': ObjectId(id) }, function(err, message) {
+      .findAndRemove({'_id': ObjectId(id)}, function(err, message) {
         db.close();
         if (err) return err;
 
