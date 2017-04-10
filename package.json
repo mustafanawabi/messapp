@@ -1,5 +1,5 @@
 {
-  "name": "myapp",
+  "name": "messapp",
   "version": "1.0.0",
   "description": "app for posting messages and checking for palindromes",
   "main": "index.js",
