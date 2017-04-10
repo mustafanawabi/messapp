@@ -13,6 +13,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
+const port = 8080;
+const db = require('./db');
 
 // set static files path
 app.use(express.static(path.join(__dirname, 'public')));
@@ -27,6 +29,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('./controllers/views.js'));
 app.use('/api/messages', require('./controllers/messages.js'));
 
-app.listen(8080, function() {
+db.connect();
+
+app.listen(port, function() {
   console.log('------------------------ server running ------------------------');
 });

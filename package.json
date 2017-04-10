@@ -4,6 +4,7 @@
   "description": "app for posting messages and checking for palindromes",
   "main": "index.js",
   "scripts": {
+    "start": "set DEBUG=express:* & node server.js",
     "test": "mocha --reporter spec",
     "lint": "eslint lib/** controllers/** models/**",
     "jsdoc": "jsdoc lib/palindrome.js"
