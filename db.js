@@ -1,10 +1,9 @@
-const MongoClient = require('mongodb').MongoClient;
-const URL = 'mongodb://localhost:27017/palindrome';
+let MongoClient = require('mongodb').MongoClient;
 let db;
 
-module.exports.connect = function() {
+module.exports.connect = function(url) {
   if (!db) {
-    MongoClient.connect(URL, function(err, database) {
+    MongoClient.connect(url, function(err, database) {
       if(err) throw err;
 
       db = database;

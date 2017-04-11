@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const path = require('path');
+let express = require('express');
+let router = express.Router();
+let path = require('path');
 
 // GET all messages
 router.get(['/', '/index', '/index.html'], function(req, res) {

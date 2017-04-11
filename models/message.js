@@ -1,7 +1,6 @@
 const messageSchema = {
   'properties': {
-    'text': {'type': 'string'},
-    'user': {'type': 'string'},
+    'text': {'type': 'string', 'minLength': 1, 'maxLength': 200},
   },
   'required': ['text'],
 };

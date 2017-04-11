@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "set DEBUG=express:* & node server.js",
-    "test": "mocha --reporter spec",
+    "test": "mocha test/unit --reporter spec --recursive",
+    "system-test": "mocha test/system --reporter spec --recursive",
     "lint": "eslint lib/** controllers/** models/**",
+    "test-suite": "npm run test & npm run system-test",
     "jsdoc": "jsdoc lib/palindrome.js"
   },
   "author": "",
@@ -25,6 +27,7 @@
     "install": "^0.8.8",
     "jsdoc": "^3.4.3",
     "mocha": "^3.2.0",
-    "npm": "^4.4.4"
+    "npm": "^4.4.4",
+    "request": "^2.81.0"
   }
 }

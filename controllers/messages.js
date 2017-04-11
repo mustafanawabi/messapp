@@ -1,21 +1,27 @@
-const express = require('express');
-const router = express.Router();
-const ObjectId = require('mongodb').ObjectID;
-const palindrome = require('../lib/palindrome');
+let express = require('express');
+let router = express.Router();
+let ObjectId = require('mongodb').ObjectID;
+let palindrome = require('../lib/palindrome');
+let MESSAGE_SCHEMA = require('../models/message');
+let validator = require('jsonschema').validate;
+let db = require('../db');
 const MESSAGES_COLLECTION = 'messages';
-const MESSAGE_SCHEMA = require('../models/message');
-const validator = require('jsonschema').validate;
-const db = require('../db');
 
-// middleware to validate messages
+// middleware to validate messages and enrich req with additional properties
 router.use(function(req, res, next) {
   if (req.method == 'POST') {
     let message = req.body;
     let validatorResult = validator(message, MESSAGE_SCHEMA);
 
+    // check if message validation is ok
     if (validatorResult.errors.length > 0) {
       res.status(400).send(validatorResult.errors[0].stack);
       return;
+    } else { // add Date, length of text and is palindrome to req object
+      let now = new Date();
+      message.date = now.toUTCString();
+      message.length = message.text.length;
+      message.isPalindrome = palindrome(message.text);
     }
   }
 
@@ -70,7 +76,7 @@ router.get('/:id/palindrome', function(req, res) {
 router.post('/', function(req, res) {
   let message = req.body;
   db.get().collection(MESSAGES_COLLECTION).insert(message, function() {
-    res.status(201).send(message);
+    res.status(201).json(message);
   });
 });
 

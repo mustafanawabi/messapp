@@ -1,7 +1,7 @@
 let assert = require('chai').assert;
-let palindrome = require('../lib/palindrome');
+let palindrome = require('../../lib/palindrome');
 
-describe('palindromes', function() {
+describe('-- PALINDROME TESTS --', function() {
   describe('simple palindromes', function() {
     let texts = ['', ' ', 'anna', 'murdrum', 'Redder', 'My gym'];
 
