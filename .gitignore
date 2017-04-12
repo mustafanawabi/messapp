@@ -2,3 +2,4 @@ node_modules
 .git
 *.log
 out
+public/js/*.js

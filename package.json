@@ -11,7 +11,7 @@
     "test-suite": "npm run test & npm run system-test",
     "jsdoc": "jsdoc lib/palindrome.js",
     "watch": "watch \"npm run browserify\" public/js",
-    "browserify": "browserify public/js/app.jsx -t babelify -o public/output/app.js"
+    "browserify": "browserify public/js/app.jsx -t babelify -o public/out/app.js"
   },
   "babel": {
     "presets": [
@@ -24,11 +24,14 @@
   "dependencies": {
     "axios": "^0.16.1",
     "body-parser": "^1.17.1",
+    "dateformat": "^2.0.0",
     "express": "^4.15.2",
     "jsonschema": "^1.1.1",
+    "material-ui": "^0.17.3",
     "mongodb": "^2.2.25",
     "react": "^15.5.3",
-    "react-dom": "^15.5.3"
+    "react-dom": "^15.5.3",
+    "react-tap-event-plugin": "^2.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",

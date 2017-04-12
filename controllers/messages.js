@@ -4,6 +4,7 @@ let ObjectId = require('mongodb').ObjectID;
 let palindrome = require('../lib/palindrome');
 let MESSAGE_SCHEMA = require('../models/message');
 let validator = require('jsonschema').validate;
+let dateFormat = require('dateformat');
 let db = require('../db');
 const MESSAGES_COLLECTION = 'messages';
 
@@ -19,7 +20,7 @@ router.use(function(req, res, next) {
       return;
     } else { // add Date, length of text and is palindrome to req object
       let now = new Date();
-      message.date = now.toUTCString();
+      message.date = dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
       message.length = message.text.length;
       message.isPalindrome = palindrome(message.text);
     }
