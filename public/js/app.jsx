@@ -10,6 +10,7 @@ import AppBar from 'material-ui/AppBar';
 // see http://stackoverflow.com/a/34015469/988941
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+const URL = '/api/messages';
 
 class App extends React.Component {
   constructor() {
@@ -20,23 +21,36 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/messages')
+    axios.get(URL)
     .then(res => {
-      this.setState({
-        messages: res.data
-      });
+      this.setState({messages: res.data});
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch(function (err) {
+      console.log(err);
     });
   }
 
   onSend() {
-      alert("send button");
+    let textField = document.getElementById('textf');
+    axios.post(URL, {
+      text: textField.value
+    })
+    .then(res => {
+      this.setState({messages: this.state.messages.concat([res.data])});
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
   }
 
   onRefresh() {
-      alert("refresh pressed");
+    axios.get(URL)
+    .then(res => {
+      this.setState({messages: res.data});
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
   }
 
   render() {
@@ -45,6 +59,7 @@ class App extends React.Component {
           <div>
           <AppBar
               title="messapp"
+              showMenuIconButton={false}
               iconElementRight={<FlatButton label="REFRESH" onTouchTap={this.onRefresh.bind(this)} />}
             />
             {this.state.messages.map(message =>
@@ -61,7 +76,10 @@ class App extends React.Component {
                 </CardText>
               </Card>
             )}
-            <TextField floatingLabelText="post a message" />
+            <TextField
+              id="textf"
+              floatingLabelText="post a message"
+            />
             <FlatButton
               label="SEND"
               primary={true}
