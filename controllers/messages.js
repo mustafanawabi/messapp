@@ -20,7 +20,7 @@ router.use(function(req, res, next) {
       return;
     } else { // add Date, length of text and is palindrome to req object
       let now = new Date();
-      message.date = dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT");
+      message.date = dateFormat(now, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
       message.length = message.text.length;
       message.isPalindrome = palindrome(message.text);
     }
