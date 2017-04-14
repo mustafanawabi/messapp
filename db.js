@@ -9,7 +9,7 @@ module.exports.connect = function(url) {
       db = database;
     });
   }
-}
+};
 
 module.exports.close = function() {
   if (db) {

@@ -4,14 +4,18 @@
   "description": "App for posting messages and checking if they are palindromes",
   "main": "index.js",
   "scripts": {
-    "start": "set DEBUG=express:* & node server.js",
-    "test": "mocha test/unit --reporter spec --recursive",
-    "system-test": "mocha test/system --reporter spec --recursive",
-    "lint": "eslint lib/** controllers/** models/**",
-    "test-suite": "npm run test & npm run system-test",
-    "jsdoc": "jsdoc lib/palindrome.js",
-    "watch": "watch \"npm run browserify\" public/js",
-    "browserify": "browserify public/js/app.jsx -t babelify -o public/out/app.js"
+    "start": "node server.js",
+    "start:debug": "set DEBUG=express:* & node server.js",
+    "test": "npm run test:unit & npm run test:system",
+    "test:unit": "mocha test/unit --reporter spec --recursive",
+    "test:system": "mocha test/system --reporter spec --recursive",
+    "build:js": "browserify ui/src/js/app.jsx -t babelify -o ui/dist/js/app.js",
+    "build:css": "",
+    "uglify": "",
+    "cssmin": "",
+    "lint": "eslint server.js db.js lib/** controllers/** models/** middleware/**",
+    "jsdoc": "jsdoc lib -r -d doc/jsdoc",
+    "watch": "watch \"npm run browserify\" ui/src/js"
   },
   "babel": {
     "presets": [
