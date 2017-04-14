@@ -1,7 +1,6 @@
 let validator = require('jsonschema').validate;
 let schema = require('../models/message');
 let dateFormat = require('dateformat');
-let palindrome = require('../lib/palindrome');
 
 module.exports.validate = function(req, res, next) {
   if (req.method == 'POST') {
@@ -24,7 +23,7 @@ module.exports.enrich = function(req, res, next) {
     let now = new Date();
     message.date = dateFormat(now, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
     message.length = message.text.length;
-    message.isPalindrome = palindrome(message.text);
+    message.isPalindrome = '';
   }
 
   next();

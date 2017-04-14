@@ -15,7 +15,7 @@
     "cssmin": "",
     "lint": "eslint server.js db.js lib/** controllers/** models/** middleware/**",
     "jsdoc": "jsdoc lib -r -d doc/jsdoc",
-    "watch": "watch \"npm run browserify\" ui/src/js"
+    "watch": "watch \"npm run build:js\" ui/src/js"
   },
   "babel": {
     "presets": [

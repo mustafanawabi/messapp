@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
   db.get().collection(MESSAGES_COLLECTION)
     .find({})
     .toArray(function(err, messages) {
-      if (err) return err;
+      if (errorExists(err)) return;
 
       res.json(messages);
   });
@@ -26,7 +26,7 @@ router.get('/', function(req, res) {
 router.get('/:id', function(req, res) {
   db.get().collection(MESSAGES_COLLECTION)
     .findOne({'_id': ObjectId(req.params.id)}, function(err, message) {
-      if (err) return err;
+      if (errorExists(err)) return;
 
       if (!message) {
         res.status(404).end();
@@ -39,17 +39,23 @@ router.get('/:id', function(req, res) {
 
 // GET specific a message based on the id and check if it is a palindrome
 router.get('/:id/palindrome', function(req, res) {
+  let id = req.params.id
   db.get().collection(MESSAGES_COLLECTION)
-    .findOne({'_id': ObjectId(req.params.id)}, function(err, message) {
-      if (err) return err;
+    .findOne({'_id': ObjectId(id)}, function(err, message) {
+      if (errorExists(err)) return;
 
       if (!message) {
         res.status(404).end();
         return;
       }
 
-      let result = palindrome(message.text);
-      res.json({'palindrome': result});
+      let isPalindrome = palindrome(message.text);
+      db.get().collection(MESSAGES_COLLECTION)
+        .update({'_id': ObjectId(id)}, {$set:{'isPalindrome': isPalindrome}}, function(err, message) {
+          if (err) return err;
+
+          res.json({'palindrome': isPalindrome});
+        });
     });
 });
 
@@ -65,7 +71,7 @@ router.post('/', function(req, res) {
 router.delete('/:id', function(req, res) {
   db.get().collection(MESSAGES_COLLECTION)
     .findAndRemove({'_id': ObjectId(req.params.id)}, function(err, message) {
-      if (err) return err;
+      if (errorExists(err)) return;
 
       if (!message || (message.value == null)) {
         res.status(404).end();
@@ -75,5 +81,15 @@ router.delete('/:id', function(req, res) {
       res.status(204).end();
   });
 });
+
+function errorExists(err) {
+  if (err) {
+    console.log(err);
+    res.status(500).end();
+    return true;
+  }
+
+  return false;
+}
 
 module.exports = router;
