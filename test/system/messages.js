@@ -58,7 +58,21 @@ describe('-- REST APIs TESTS --', function() {
         assert.equal(200, res.statusCode);
         assert.equal('yooy', data.text);
         assert.equal(messageID, data._id);
-        assert.equal(true, data.isPalindrome);
+
+        done();
+      });
+    });
+  });
+
+  it('post a message and check if it a palindrome', function (done) {
+    request({url: url, method: 'POST', json: {text: 'abccba'}}, function(err, res, body) {
+      messageID = body._id;
+      assert.equal(201, res.statusCode);
+
+      request(url + '/' + messageID + '/palindrome', function(err, res, body) {
+        let data = JSON.parse(body);
+        assert.equal(200, res.statusCode);
+        assert.equal(true, data.palindrome);
 
         done();
       });

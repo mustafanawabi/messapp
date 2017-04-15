@@ -39,7 +39,7 @@ router.get('/:id', function(req, res) {
 
 // GET specific a message based on the id and check if it is a palindrome
 router.get('/:id/palindrome', function(req, res) {
-  let id = req.params.id
+  let id = req.params.id;
   db.get().collection(MESSAGES_COLLECTION)
     .findOne({'_id': ObjectId(id)}, function(err, message) {
       if (errorExists(err)) return;
@@ -51,10 +51,13 @@ router.get('/:id/palindrome', function(req, res) {
 
       let isPalindrome = palindrome(message.text);
       db.get().collection(MESSAGES_COLLECTION)
-        .update({'_id': ObjectId(id)}, {$set:{'isPalindrome': isPalindrome}}, function(err, message) {
-          if (err) return err;
+        .update({
+          '_id': ObjectId(id)},
+          {$set: {'isPalindrome': isPalindrome}},
+          function(err, message) {
+            if (err) return err;
 
-          res.json({'palindrome': isPalindrome});
+            res.json({'palindrome': isPalindrome});
         });
     });
 });
@@ -82,6 +85,13 @@ router.delete('/:id', function(req, res) {
   });
 });
 
+
+/**
+ * errorExists - checks if an error exists, logs the error, sets server status
+ *
+ * @param  {type} err error object
+ * @return {type}     true if an error exists, false otherwise
+ */
 function errorExists(err) {
   if (err) {
     console.log(err);
