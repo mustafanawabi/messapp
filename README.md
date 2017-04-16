@@ -122,8 +122,11 @@ npm test
 
 ## Additional npm Scripts
 `npm build:js` builds the project with browserify and babelify.
+
 `npm lint` executes eslint
+
 `npm jsdoc` generates jsdoc
+
 `npm watch` builds the project when changes to the ui code are detected
 
 ## License
