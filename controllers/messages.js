@@ -1,3 +1,6 @@
+/**
+ * Messages Router - routes HTTP requests from '/api/messages' to middleware
+ */
 let express = require('express');
 let router = express.Router();
 let ObjectId = require('mongodb').ObjectID;
@@ -11,7 +14,12 @@ const MESSAGES_COLLECTION = 'messages';
 router.use(messageMiddleware.validate);
 router.use(messageMiddleware.enrich);
 
-// GET all messages
+/**
+ * Middleware to get all messages
+ * GET /api/messages
+ *
+ * @return {array} messages
+ */
 router.get('/', function(req, res) {
   db.get().collection(MESSAGES_COLLECTION)
     .find({})
@@ -22,7 +30,13 @@ router.get('/', function(req, res) {
   });
 });
 
-// GET specific a message based on the id
+/**
+ * Middleware to get a specific message
+ * GET /api/messages/{id}
+ *
+ * @param   {number}  id - the id of the message
+ * @return  {object}  message
+ */
 router.get('/:id', function(req, res) {
   db.get().collection(MESSAGES_COLLECTION)
     .findOne({'_id': ObjectId(req.params.id)}, function(err, message) {
@@ -37,7 +51,13 @@ router.get('/:id', function(req, res) {
     });
 });
 
-// GET specific a message based on the id and check if it is a palindrome
+/**
+ * Middleware to check if a message is an palindrome
+ * GET /api/messages/{id}/palindrome
+ *
+ * @param   {number}  id - the id of the message
+ * @return  {boolean} true if message is a palindrome, false otherwise
+ */
 router.get('/:id/palindrome', function(req, res) {
   let id = req.params.id;
   db.get().collection(MESSAGES_COLLECTION)
@@ -51,7 +71,7 @@ router.get('/:id/palindrome', function(req, res) {
 
       let isPalindrome = palindrome(message.text);
       db.get().collection(MESSAGES_COLLECTION)
-        .update({
+        .update({ // update message property 'isPalindrome'
           '_id': ObjectId(id)},
           {$set: {'isPalindrome': isPalindrome}},
           function(err, message) {
@@ -62,7 +82,12 @@ router.get('/:id/palindrome', function(req, res) {
     });
 });
 
-// POST a message
+/**
+ * Middleware to post a new message
+ * POST /api/messages
+ *
+ * @return  {object}  message - the created message
+ */
 router.post('/', function(req, res) {
   let message = req.body;
   db.get().collection(MESSAGES_COLLECTION).insert(message, function() {
@@ -70,7 +95,12 @@ router.post('/', function(req, res) {
   });
 });
 
-// DELETE a message based on the id
+/**
+ * Middleware to delete a message
+ * DELETE /api/messages/{id}/palindrome
+ *
+ * @param   {number}  id - the id of the message
+ */
 router.delete('/:id', function(req, res) {
   db.get().collection(MESSAGES_COLLECTION)
     .findAndRemove({'_id': ObjectId(req.params.id)}, function(err, message) {
@@ -89,8 +119,8 @@ router.delete('/:id', function(req, res) {
 /**
  * errorExists - checks if an error exists, logs the error, sets server status
  *
- * @param  {type} err error object
- * @return {type}     true if an error exists, false otherwise
+ * @param  {object}   err - the error object
+ * @return {boolean}  true if an error exists, false otherwise
  */
 function errorExists(err) {
   if (err) {
