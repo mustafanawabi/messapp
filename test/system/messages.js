@@ -41,7 +41,6 @@ describe('-- REST APIs TESTS --', function() {
         assert.equal(200, res.statusCode);
         assert.equal('test message', data[0].text);
         assert.equal(messageID, data[0]._id);
-        assert.equal(false, data[0].isPalindrome);
 
         done();
       });
