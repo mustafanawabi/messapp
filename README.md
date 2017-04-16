@@ -2,7 +2,7 @@
 
 Messapp is a simple messaging app that allows anyone to post, retrieve and delete messages. Messapp can also check if words or phrases are [palindromes](https://en.wikipedia.org/wiki/Palindrome). You can use messapp in two ways, either by calling the REST APIs or interacting with the UI.
 
-Messapp is built using [NodeJS](https://nodejs.org/en/), [React](https://facebook.github.io/react/) and [MongoDB](https://www.mongodb.com/). 
+Messapp is built using [NodeJS](https://nodejs.org/en/) & [ExpressJS](https://expressjs.com/), [React](https://facebook.github.io/react/) and [MongoDB](https://www.mongodb.com/). 
 
 ## Getting started
 Download and install [MongoDB](https://www.mongodb.com/download-center). **MongoDB needs to be started before starting the app server**.
@@ -28,7 +28,7 @@ Messapp exposes REST APIs to post, retrieve all messages, retrieve a specific me
 All APIs start with `/api`, followed by entity name (`/messages`) and specific resource (`/{id}/palindrome`).
 
 #### Messages API
-##### `GET /api/messages` returns messages as an array of JSON objects.
+##### _`GET /api/messages`_ returns messages as an array of JSON objects.
 
 `http://localhost:80/api/messages` will return:
 
@@ -42,7 +42,7 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
   }
  ]`
 
-##### `GET /api/messages/{id}` returns a message based on the id as JSON.
+##### _`GET /api/messages/{id}`_ returns a message based on the id as JSON.
 
 `http://localhost:80/api/messages/58f1ca74c5521508e0335015/` will return:
 
@@ -54,7 +54,7 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
   "isPalindrome": false
 }`
 
-##### `GET /api/messages/{id}/palindrome` returns true if the message is a palindrome, false otherwise.
+##### _`GET /api/messages/{id}/palindrome`_ returns true if the message is a palindrome, false otherwise.
 
 `http://localhost:80/api/messages/58f1ca74c5521508e0335015/palindrome` will return:
 
@@ -62,7 +62,7 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
   "palindrome": false
 }`
 
-##### `POST /api/messages/` returns the newly message as JSON. The payload needs to have the property 'text' defined.
+##### _`POST /api/messages/`_ returns the newly message as JSON. The payload needs to have the property 'text' defined.
 
 `http://localhost:80/api/messages` with payload `{text: 'sample text'}` will return:
 
@@ -79,6 +79,24 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 `http://localhost:80/api/messages/58f2fb7d90ef821a741122c1`
 
 ## Architecture
+Messapp can be split into two main components: Server and UI.
+
+#### Server
+The server side code follows the **MVC** pattern. The starting point for the server is the file `server.js` found at the root level of the project.
+
+##### Model
+The models for the app can be found inside the folder `models`. Models are Javascript Objects that contain properties called `properties` and `required`.
+
+##### View
+The views for the app   be found inside the folder `views`. Views are html that the server returns.
+
+##### Controller
+The controllers for the app can be found inside the folder `controllers`. Controllers are the functions that get executed when certian endpoints are called.
+
+##### Other
+There are also two additional folders to consider, namely `libs` and `middleware`. The `libs` folder contains additional libaries that the app is dependent on (e.g. `palindrome.js`). The `middleware` folder contains are middleware that gets executed by the server when processing a request.
+
+#### UI
 
 
 ## Use Cases
@@ -94,7 +112,7 @@ Run the following command to run _just_ the system tests:
 npm run test:system
 ```
 
-**_Important:_ the MongoDB server needs to be running but the app server needs to be stopped in order for the system tests to run correctly.** The reason is the tests will start/stop the app server.
+**_Important:_ the MongoDB server needs to be running but the app server needs to be stopped in order for the system tests to run correctly.** The reason is the tests will start/stop the app server and do database clean up.
 
 Run the following command to all the tests:
 ```shell
