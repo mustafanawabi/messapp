@@ -30,8 +30,6 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 #### Messages API
 ##### `GET /api/messages` returns messages as an array of JSON objects.
 
-*Example*
-
 `http://localhost:80/api/messages` will return:
 
 `[
@@ -46,8 +44,6 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 
 ##### `GET /api/messages/{id}` returns a message based on the id as JSON.
 
-*Example*
-
 `http://localhost:80/api/messages/58f1ca74c5521508e0335015/` will return:
 
 `{
@@ -60,8 +56,6 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 
 ##### `GET /api/messages/{id}/palindrome` returns true if the message is a palindrome, false otherwise.
 
-*Example*
-
 `http://localhost:80/api/messages/58f1ca74c5521508e0335015/palindrome` will return:
 
 `{
@@ -69,8 +63,6 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 }`
 
 ##### `POST /api/messages/` returns the newly message as JSON. The payload needs to have the property 'text' defined.
-
-*Example*
 
 `http://localhost:80/api/messages` with payload `{text: 'sample text'}` will return:
 
@@ -84,13 +76,30 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 
 ##### `DELETE /api/messages/{id}` deletes a message based on the id and returns no content.
 
-*Example*
-
 `http://localhost:80/api/messages/58f2fb7d90ef821a741122c1`
 
 ## Architecture
 
+
 ## Use Cases
+
+## Tests
+Run the following command to run _just_ the unit tests:
+```shell
+npm run test:unit
+```
+
+Run the following command to run _just_ the system tests:
+```shell
+npm run test:system
+```
+
+**_Important:_ the MongoDB server needs to be running but the app server needs to be stopped in order for the system tests to run correctly.** The reason is the tests will start/stop the app server.
+
+Run the following command to all the tests:
+```shell
+npm test
+```
 
 ## Key Features
 
