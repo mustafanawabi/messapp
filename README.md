@@ -85,7 +85,7 @@ Messapp can be split into two main components: Server and UI.
 The server side code follows the **MVC** pattern. The starting point for the server is the file `server.js` found at the root level of the project.
 
 ##### Model
-The models for the app can be found inside the folder `models`. Models are JavaScript Objects that contain properties called `properties` and `required`.
+The models for the app can be found inside the folder `models`. Models are JavaScript Objects that contain properties called `properties` and `required`. Models are used to validate incoming POST requests.
 
 ##### View
 The views for the app   be found inside the folder `views`. Views are html that the server returns.
