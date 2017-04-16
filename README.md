@@ -102,6 +102,7 @@ All UI code (js files, stylesheets, etc.) can be found in the folder `ui`. Insid
 ## Use Cases
 The following explains the REST API use case in a sequence diagram
 
+https://cloud.githubusercontent.com/assets/4382148/25073859/8ff143ae-22bd-11e7-8ffa-c9fac7750cb5.png
 
 ## Tests
 Run the following command to execute _just_ the unit tests:
