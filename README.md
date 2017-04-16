@@ -85,7 +85,7 @@ Messapp can be split into two main components: Server and UI.
 The server side code follows the **MVC** pattern. The starting point for the server is the file `server.js` found at the root level of the project.
 
 ##### Model
-The models for the app can be found inside the folder `models`. Models are JavaScript Objects that contain properties called `properties` and `required`.
+The models for the app can be found inside the folder `models`. Models are JavaScript Objects that contain properties called `properties` and `required`. Models are used to validate incoming POST requests.
 
 ##### View
 The views for the app   be found inside the folder `views`. Views are html that the server returns.
@@ -94,13 +94,17 @@ The views for the app   be found inside the folder `views`. Views are html that 
 The controllers for the app can be found inside the folder `controllers`. Controllers are the functions that get executed when endpoints are called.
 
 ##### Other
-There are also two additional folders to consider, namely `libs` and `middleware`. The `libs` folder contains additional libraries that the app is dependent on (e.g. `palindrome.js`). The `middleware` folder contains are middleware that gets executed by the server when processing a request.
+There are also two additional folders to consider, namely `libs` and `middleware`. The `libs` folder contains custom libraries that the app is dependent on (e.g. `palindrome.js`). The `middleware` folder contains middleware that gets executed by the server when processing a request.
 
 ### UI
-All UI code (js files, stylesheets, etc.) can be found in the folder `ui`. Inside `ui` there are two additional folders, one for distribution (transpiled, minified code) called `dist` and the other source called `src`.
+All UI code (js, stylesheets, etc.) can be found in the folder `ui`. Inside `ui` there are two additional folders, one for distribution (transpiled, minified code) called `dist` and the other source called `src`.
 
 ## Use Cases
+The following sequence diagram describes the interaction for the REST APIs
+![alt tag](https://cloud.githubusercontent.com/assets/4382148/25074260/40b6d148-22c5-11e7-8ace-1ce56e184340.png)
 
+The following sequence diagram describes the interaction for the UI
+![alt tag](https://cloud.githubusercontent.com/assets/4382148/25074261/41d969dc-22c5-11e7-8fda-e01b0ca7e132.png)
 
 ## Tests
 Run the following command to execute _just_ the unit tests:
