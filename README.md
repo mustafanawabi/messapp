@@ -28,9 +28,9 @@ Messapp exposes REST APIs to post, retrieve all messages, retrieve a specific me
 All APIs start with `/api`, followed by entity name (`/messages`) and specific resource (`/{id}/palindrome`).
 
 #### Messages API
-##### `GET /api/messages` returns an array of JSON structure messages.
+##### `GET /api/messages` returns messages as an array of JSON objects.
 
-Example
+*Example*
 
 `http://localhost:80/api/messages` will return:
 
@@ -44,9 +44,9 @@ Example
   }
  ]`
 
-##### `GET /api/messages/{id}` returns a specific JSON structure message based on the id.
+##### `GET /api/messages/{id}` returns a message based on the id as JSON.
 
-Example
+*Example*
 
 `http://localhost:80/api/messages/58f1ca74c5521508e0335015/` will return:
 
@@ -60,13 +60,33 @@ Example
 
 ##### `GET /api/messages/{id}/palindrome` returns true if the message is a palindrome, false otherwise.
 
-Example
+*Example*
 
 `http://localhost:80/api/messages/58f1ca74c5521508e0335015/palindrome` will return:
 
 `{
   "palindrome": false
 }`
+
+##### `POST /api/messages/` returns the newly message as JSON. The payload needs to have the property 'text' defined.
+
+*Example*
+
+`http://localhost:80/api/messages` with payload `{text: 'sample text'}` will return:
+
+`{
+  "text": "sample text",
+  "date": "Sunday, April 16th, 2017, 1:05:01 AM",
+  "length": 11,
+  "isPalindrome": "",
+  "_id": "58f2fb7d90ef821a741122c1"
+}`
+
+##### `DELETE /api/messages/{id}` deletes a message based on the id and returns no content.
+
+*Example*
+
+`http://localhost:80/api/messages/58f2fb7d90ef821a741122c1`
 
 ## Architecture
 
