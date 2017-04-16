@@ -24,15 +24,16 @@ To open the UI, navigate to `http://localhost:80/` in your browser.
 ## REST APIs
 Messapp exposes REST APIs to post, retrieve all messages, retrieve a specific message, delete a message or check if an existing message is a palindrome.
 
-#### API Structure
+### API Structure
 All APIs start with `/api`, followed by entity name (`/messages`) and specific resource (`/{id}/palindrome`).
 
-##### Messages API
-`GET /api/messages`
-Returns an array of JSON structure messages.
+#### Messages API
+`GET /api/messages` returns an array of JSON structure messages.
 
 **Example**
+
 `http://localhost:80/api/messages` will return:
+
 `[
   {
     "_id": "58f1ca74c5521508e0335015",
@@ -43,11 +44,12 @@ Returns an array of JSON structure messages.
   }
  ]`
 
-`GET /api/messages/{id}`
-Returns a specific JSON structure message based on the id.
+`GET /api/messages/{id}` returns a specific JSON structure message based on the id.
 
 **Example**
+
 `http://localhost:80/api/messages/58f1ca74c5521508e0335015/` will return:
+
 `{
   "_id": "58f1ca74c5521508e0335015",
   "text": "test",
@@ -56,12 +58,12 @@ Returns a specific JSON structure message based on the id.
   "isPalindrome": false
 }`
 
-`GET /api/messages/{id}/palindrome`
-
-Returns true if the message is a palindrome, false otherwise.
+`GET /api/messages/{id}/palindrome` returns true if the message is a palindrome, false otherwise.
 
 **Example**
+
 `http://localhost:80/api/messages/58f1ca74c5521508e0335015/palindrome` will return:
+
 `{
   "palindrome": false
 }`
