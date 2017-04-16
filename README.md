@@ -85,21 +85,22 @@ Messapp can be split into two main components: Server and UI.
 The server side code follows the **MVC** pattern. The starting point for the server is the file `server.js` found at the root level of the project.
 
 ##### Model
-The models for the app can be found inside the folder `models`. Models are Javascript Objects that contain properties called `properties` and `required`.
+The models for the app can be found inside the folder `models`. Models are JavaScript Objects that contain properties called `properties` and `required`.
 
 ##### View
 The views for the app   be found inside the folder `views`. Views are html that the server returns.
 
 ##### Controller
-The controllers for the app can be found inside the folder `controllers`. Controllers are the functions that get executed when certian endpoints are called.
+The controllers for the app can be found inside the folder `controllers`. Controllers are the functions that get executed when endpoints are called.
 
 ##### Other
-There are also two additional folders to consider, namely `libs` and `middleware`. The `libs` folder contains additional libaries that the app is dependent on (e.g. `palindrome.js`). The `middleware` folder contains are middleware that gets executed by the server when processing a request.
+There are also two additional folders to consider, namely `libs` and `middleware`. The `libs` folder contains additional libraries that the app is dependent on (e.g. `palindrome.js`). The `middleware` folder contains are middleware that gets executed by the server when processing a request.
 
 ### UI
 All UI code (js files, stylesheets, etc.) can be found in the folder `ui`. Inside `ui` there are two additional folders, one for distribution (transpiled, minified code) called `dist` and the other source called `src`. 
 
 ## Use Cases
+
 
 ## Tests
 Run the following command to run _just_ the unit tests:
@@ -119,7 +120,7 @@ Run the following command to all the tests:
 npm test
 ```
 
-## npm scripts
+## Additional npm Scripts
 `npm build:js` builds the project with browserify and babelify.
 `npm lint` executes eslint
 `npm jsdoc` generates jsdoc
