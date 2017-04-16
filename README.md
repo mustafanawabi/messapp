@@ -81,7 +81,7 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 ## Architecture
 Messapp can be split into two main components: Server and UI.
 
-#### Server
+### Server
 The server side code follows the **MVC** pattern. The starting point for the server is the file `server.js` found at the root level of the project.
 
 ##### Model
@@ -96,8 +96,8 @@ The controllers for the app can be found inside the folder `controllers`. Contro
 ##### Other
 There are also two additional folders to consider, namely `libs` and `middleware`. The `libs` folder contains additional libaries that the app is dependent on (e.g. `palindrome.js`). The `middleware` folder contains are middleware that gets executed by the server when processing a request.
 
-#### UI
-
+### UI
+All UI code (js files, stylesheets, etc.) can be found in the folder `ui`. Inside `ui` there are two additional folders, one for distribution (transpiled, minified code) called `dist` and the other source called `src`. 
 
 ## Use Cases
 
@@ -119,7 +119,11 @@ Run the following command to all the tests:
 npm test
 ```
 
-## Key Features
+## npm scripts
+`npm build:js` builds the project with browserify and babelify.
+`npm lint` executes eslint
+`npm jsdoc` generates jsdoc
+`npm watch` builds the project when changes to the ui code are detected
 
 ## License
 Code released under the MIT License.
