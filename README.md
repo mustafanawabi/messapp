@@ -28,7 +28,7 @@ Messapp exposes REST APIs to post, retrieve all messages, retrieve a specific me
 All APIs start with `/api`, followed by entity name (`/messages`) and specific resource (`/{id}/palindrome`).
 
 #### Messages API
-`GET /api/messages` returns an array of JSON structure messages.
+##### `GET /api/messages` returns an array of JSON structure messages.
 
 **Example**
 
@@ -44,7 +44,7 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
   }
  ]`
 
-`GET /api/messages/{id}` returns a specific JSON structure message based on the id.
+##### `GET /api/messages/{id}` returns a specific JSON structure message based on the id.
 
 **Example**
 
@@ -58,7 +58,7 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
   "isPalindrome": false
 }`
 
-`GET /api/messages/{id}/palindrome` returns true if the message is a palindrome, false otherwise.
+##### `GET /api/messages/{id}/palindrome` returns true if the message is a palindrome, false otherwise.
 
 **Example**
 
