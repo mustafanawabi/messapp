@@ -101,7 +101,7 @@ All UI code (js files, stylesheets, etc.) can be found in the folder `ui`. Insid
 
 ## Use Cases
 The following sequence diagram describes the interaction when a call is made to the REST API
-![alt tag](https://cloud.githubusercontent.com/assets/4382148/25073859/8ff143ae-22bd-11e7-8ffa-c9fac7750cb5.png)
+![alt tag](https://cloud.githubusercontent.com/assets/4382148/25073933/3e076fc6-22bf-11e7-8de6-4d5a3ddab945.png)
 
 The following sequence diagram describes the interaction when interacting with the UI
 
