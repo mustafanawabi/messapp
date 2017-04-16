@@ -30,7 +30,7 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 #### Messages API
 ##### `GET /api/messages` returns an array of JSON structure messages.
 
-**Example**
+Example
 
 `http://localhost:80/api/messages` will return:
 
@@ -46,7 +46,7 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 
 ##### `GET /api/messages/{id}` returns a specific JSON structure message based on the id.
 
-**Example**
+Example
 
 `http://localhost:80/api/messages/58f1ca74c5521508e0335015/` will return:
 
@@ -60,7 +60,7 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 
 ##### `GET /api/messages/{id}/palindrome` returns true if the message is a palindrome, false otherwise.
 
-**Example**
+Example
 
 `http://localhost:80/api/messages/58f1ca74c5521508e0335015/palindrome` will return:
 
