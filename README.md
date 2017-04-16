@@ -94,10 +94,10 @@ The views for the app   be found inside the folder `views`. Views are html that 
 The controllers for the app can be found inside the folder `controllers`. Controllers are the functions that get executed when endpoints are called.
 
 ##### Other
-There are also two additional folders to consider, namely `libs` and `middleware`. The `libs` folder contains additional libraries that the app is dependent on (e.g. `palindrome.js`). The `middleware` folder contains are middleware that gets executed by the server when processing a request.
+There are also two additional folders to consider, namely `libs` and `middleware`. The `libs` folder contains custom libraries that the app is dependent on (e.g. `palindrome.js`). The `middleware` folder contains middleware that gets executed by the server when processing a request.
 
 ### UI
-All UI code (js files, stylesheets, etc.) can be found in the folder `ui`. Inside `ui` there are two additional folders, one for distribution (transpiled, minified code) called `dist` and the other source called `src`.
+All UI code (js, stylesheets, etc.) can be found in the folder `ui`. Inside `ui` there are two additional folders, one for distribution (transpiled, minified code) called `dist` and the other source called `src`.
 
 ## Use Cases
 The following sequence diagram describes the interaction for the REST APIs
