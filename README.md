@@ -11,7 +11,7 @@ Run the following command to install dependencies:
 ```shell
 npm install
 ```
-You can start the NodeJS server by executing:
+You can start the server by executing:
 ```shell
 npm start
 ```
@@ -30,7 +30,8 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 ##### Messages API
 `GET /api/messages`
 Returns an array of JSON structure messages.
-Example
+
+**Example**
 `http://localhost:80/api/messages` will return:
 `[
   {
@@ -44,7 +45,8 @@ Example
 
 `GET /api/messages/{id}`
 Returns a specific JSON structure message based on the id.
-Example
+
+**Example**
 `http://localhost:80/api/messages/58f1ca74c5521508e0335015/` will return:
 `{
   "_id": "58f1ca74c5521508e0335015",
@@ -52,6 +54,16 @@ Example
   "date": "Saturday, April 15th, 2017, 3:23:32 AM",
   "length": 4,
   "isPalindrome": false
+}`
+
+`GET /api/messages/{id}/palindrome`
+
+Returns true if the message is a palindrome, false otherwise.
+
+**Example**
+`http://localhost:80/api/messages/58f1ca74c5521508e0335015/palindrome` will return:
+`{
+  "palindrome": false
 }`
 
 ## Architecture
