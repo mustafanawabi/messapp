@@ -100,10 +100,11 @@ There are also two additional folders to consider, namely `libs` and `middleware
 All UI code (js files, stylesheets, etc.) can be found in the folder `ui`. Inside `ui` there are two additional folders, one for distribution (transpiled, minified code) called `dist` and the other source called `src`.
 
 ## Use Cases
-The following sequence diagram describes the interaction when a call is made to the REST API
-![alt tag](https://cloud.githubusercontent.com/assets/4382148/25073933/3e076fc6-22bf-11e7-8de6-4d5a3ddab945.png)
+The following sequence diagram describes the interaction for the REST APIs
+![alt tag](https://cloud.githubusercontent.com/assets/4382148/25074260/40b6d148-22c5-11e7-8ace-1ce56e184340.png)
 
-The following sequence diagram describes the interaction when interacting with the UI
+The following sequence diagram describes the interaction UI
+![alt tag](https://cloud.githubusercontent.com/assets/4382148/25074261/41d969dc-22c5-11e7-8fda-e01b0ca7e132.png)
 
 ## Tests
 Run the following command to execute _just_ the unit tests:
