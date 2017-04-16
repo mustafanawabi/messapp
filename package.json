@@ -9,10 +9,8 @@
     "test": "npm run test:unit & npm run test:system",
     "test:unit": "mocha test/unit --reporter spec --recursive",
     "test:system": "mocha test/system --reporter spec --recursive",
-    "build:js": "browserify ui/src/js/app.jsx -t babelify -o ui/dist/js/app.js",
-    "build:css": "",
-    "uglify": "",
-    "cssmin": "",
+    "build:js": "browserify ui/src/js/app.jsx -t babelify | uglifyjs -c > ui/dist/js/bundle.js",
+    "build:css": "cleancss -o ui/dist/styles/main.min.css ui/src/styles/main.css",
     "lint": "eslint server.js db.js lib/** controllers/** models/** middleware/**",
     "jsdoc": "jsdoc lib -r -d doc/jsdoc",
     "watch": "watch \"npm run build:js\" ui/src/js"
@@ -44,12 +42,15 @@
     "babelify": "^7.3.0",
     "browserify": "^14.3.0",
     "chai": "^3.5.0",
+    "clean-css": "^4.0.12",
+    "clean-css-cli": "^4.0.12",
     "eslint": "^3.19.0",
     "eslint-config-google": "^0.7.1",
     "jsdoc": "^3.4.3",
     "mocha": "^3.2.0",
     "npm": "^4.4.4",
     "request": "^2.81.0",
+    "uglify-js": "^2.8.22",
     "watch": "^1.0.2"
   }
 }
