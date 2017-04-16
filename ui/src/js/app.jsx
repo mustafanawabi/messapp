@@ -102,11 +102,15 @@ class App extends React.Component {
 
   /**
    * onSend - handler to post a new message
+   * *
+   * @param  {object} event
+   * @param  {string} text - the text to post
    */
-  onSend() {
+  onSend(ev, text) {
     let textField = document.getElementById('textf');
     if (textField.value.trim() == '') {
-      this.setState({open: true, dialogText: text});
+      this.setState({open: true, dialogText: 'Cannot post an empty message.'});
+      return;
     }
 
     this.showLoader();
@@ -120,7 +124,7 @@ class App extends React.Component {
       this.setState({messages: this.state.messages.concat([res.data])});
     })
     .catch(function(err) {
-      this.showError(err, 'Message field cannot be empty.');
+      this.showError(err, 'Something went wrong, please try again later.');
     }.bind(this));
   }
 

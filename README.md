@@ -127,6 +127,8 @@ npm test
 ## Additional npm Scripts
 `npm build:js` builds the project
 
+`npm build:css` minifies stylesheets
+
 `npm lint` executes eslint
 
 `npm jsdoc` generates jsdoc
