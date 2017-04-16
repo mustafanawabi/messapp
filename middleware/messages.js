@@ -1,7 +1,17 @@
+/**
+ * Middleware - a set of functions that perform different tasks
+ */
 let validator = require('jsonschema').validate;
 let schema = require('../models/message');
 let dateFormat = require('dateformat');
 
+/**
+ * validate - validates incoming POST requests against the mnessage model
+ *
+ * @param  {object} req  the request object
+ * @param  {object} res  the response object
+ * @param  {object} next the next function
+ */
 module.exports.validate = function(req, res, next) {
   if (req.method == 'POST') {
     let message = req.body;
@@ -17,6 +27,13 @@ module.exports.validate = function(req, res, next) {
   next();
 };
 
+/**
+ * enrich - adds the date and message length to the request object
+ *
+ * @param  {object} req  the request object
+ * @param  {object} res  the response object
+ * @param  {object} next the next function
+ */
 module.exports.enrich = function(req, res, next) {
   if (req.method == 'POST') {
     let message = req.body;

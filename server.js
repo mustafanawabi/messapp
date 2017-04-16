@@ -1,8 +1,6 @@
 /**
-  messapp REST APIs to get, post, and delete messages
-  You can also check if a message is a palindrome
-*/
-
+ * Server - a NodeJS/ExpressJS based HTTP server
+ */
 let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
@@ -21,10 +19,14 @@ app.use('/api/messages', require('./controllers/messages.js'));
 
 // connect to the db based on env variable
 let url;
-app.get('env') == 'test' ? url = 'mongodb://localhost:27017/messapp-test' : url = 'mongodb://localhost:27017/messapp';
+app.get('env') == 'test' ? url = 'mongodb://localhost:27017/messapp-test' :
+                           url = 'mongodb://localhost:27017/messapp';
 db.connect(url);
 
+// set port
 app.set('port', process.env.PORT || 8080);
+
+// start server
 let server = app.listen(app.get('port'), function() {
   console.log('server listening on ' + app.get('port') + ' with db ' + url);
 });

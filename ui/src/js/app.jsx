@@ -1,3 +1,6 @@
+/**
+ * UI - built using React and material-ui
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
@@ -32,6 +35,10 @@ class App extends React.Component {
     };
   }
 
+
+  /**
+   * componentDidMount - (React life cycle) invoked immediately after a component is mounted
+   */
   componentDidMount() {
     axios.get(URL)
     .then(res => {
@@ -42,68 +49,112 @@ class App extends React.Component {
     });
   }
 
-  handleRequestChange(event, index) {
-      this.setState({selectedItemId: index});
+
+  /**
+   * handleRequestChange - handler when the selection on the list changes
+   *
+   * @param  {object} event
+   * @param  {number} id - the id of the message
+   */
+  handleRequestChange(event, id) {
+      this.setState({selectedItemId: id});
   }
 
+  /**
+   * handleDialogOpen - handler when the dialog opens
+   */
   handleDialogOpen() {
       this.setState({open: true});
   }
 
+  /**
+   * handleDialogClose - handler when the dialog closes
+   */
   handleDialogClose() {
       this.setState({open: false});
   }
 
+  /**
+   * showLoader - displays the loading image
+   */
+  showLoader() {
+    document.getElementById('progress').style.display = 'inline-block';
+  }
+
+  /**
+   * hideLoader - hides the loading image
+   */
+  hideLoader() {
+    document.getElementById('progress').style.display = 'none';
+  }
+
+  /**
+   * showError - logs error and shows dialog with error text
+   *
+   * @param  {object} event
+   * @param  {number} id - the id of the message
+   */
+  showError(err, text) {
+    console.log(err);
+    this.hideLoader();
+    this.setState({open: true, dialogText: err.message || 'Something went wrong, please try again later.'});
+  }
+
+  /**
+   * onSend - handler to post a new message
+   */
   onSend() {
     let textField = document.getElementById('textf');
     if (textField.value.trim() == '') {
-      this.setState({open: true, dialogText: 'Message field cannot be empty.'});
-      return;
+      this.setState({open: true, dialogText: text});
     }
 
-    document.getElementById('progress').style.display = 'inline-block';
+    this.showLoader();
 
     axios.post(URL, {
       text: textField.value
     })
     .then(res => {
-      document.getElementById('progress').style.display = 'none';
+      this.hideLoader();
       textField.value = '';
       this.setState({messages: this.state.messages.concat([res.data])});
     })
     .catch(function(err) {
-      console.log(err);
-      document.getElementById('progress').style.display = 'none';
-      this.setState({open: true, dialogText: err.message || 'Something went wrong, please try again later.'});
+      this.showError(err, 'Message field cannot be empty.');
     }.bind(this));
   }
 
+  /**
+   * onRefresh - handler to request a refresh of messages from the backend
+   */
   onRefresh() {
-    document.getElementById('progress').style.display = 'inline-block';
+    this.showLoader();
 
     axios.get(URL)
     .then(res => {
-      document.getElementById('progress').style.display = 'none';
+      this.hideLoader();
       this.setState({messages: res.data});
     })
     .catch(function (err) {
-      console.log(err);
-      document.getElementById('progress').style.display = 'none';
-      this.setState({open: true, dialogText: err.message || 'Something went wrong, please try again later.'});
+      this.showError(err, 'Something went wrong, please try again later.');
     }.bind(this));
   }
 
-  onPalindrome(ev, res) {
+
+  /**
+   * onPalindrome - handler to check if messge is a palindrome
+   */
+  onPalindrome() {
     if (this.state.selectedItemId == '') {
       this.setState({open: true, dialogText: 'Select an item first.'});
       return;
     }
 
-    document.getElementById('progress').style.display = 'inline-block';
+    this.showLoader();
 
     axios.get(URL + '/' + this.state.selectedItemId + '/palindrome')
     .then(res => {
-      document.getElementById('progress').style.display = 'none';
+      this.hideLoader();
 
       let text;
       if (res.data.palindrome || res.data.palindrome == 'true') {
@@ -116,9 +167,7 @@ class App extends React.Component {
       this.setState({open: true, dialogText: text});
     })
     .catch(function (err) {
-      document.getElementById('progress').style.display = 'none';
-      this.setState({open: true, dialogText: err.message || 'Something went wrong, please try again later.'});
-      console.log(err);
+      this.showError(err, 'Something went wrong, please try again later.');
     }.bind(this));
   }
 
@@ -197,7 +246,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('app')
-);
+ReactDOM.render(<App />, document.getElementById('app'));

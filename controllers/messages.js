@@ -1,5 +1,5 @@
 /**
- * Messages Router - routes HTTP requests from '/api/messages' to middleware
+ * Messages Router - routes requests from '/api/messages' to middleware
  */
 let express = require('express');
 let router = express.Router();

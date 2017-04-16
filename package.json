@@ -12,7 +12,7 @@
     "build:js": "browserify ui/src/js/app.jsx -t babelify | uglifyjs -c > ui/dist/js/bundle.js",
     "build:css": "cleancss -o ui/dist/styles/main.min.css ui/src/styles/main.css",
     "lint": "eslint server.js db.js lib/** controllers/** models/** middleware/**",
-    "jsdoc": "jsdoc lib -r -d doc/jsdoc",
+    "jsdoc": "jsdoc lib controllers middleware models db.js server.js -r -d doc/jsdoc",
     "watch": "watch \"npm run build:js\" ui/src/js"
   },
   "babel": {
