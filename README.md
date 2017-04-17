@@ -5,7 +5,10 @@ Messapp is a simple messaging app that allows anyone to post, retrieve and delet
 Messapp is built using [NodeJS](https://nodejs.org/en/) & [ExpressJS](https://expressjs.com/), [React](https://facebook.github.io/react/) and [MongoDB](https://www.mongodb.com/).
 
 ## Getting started
-Download and install [MongoDB](https://www.mongodb.com/download-center). **MongoDB needs to be started before starting the app server**.
+### Prerequisites
+Download and install [MongoDB](https://www.mongodb.com/download-center). **MongoDB needs to be started before starting the app server**. For information on how to start MongoDB, click [here](https://docs.mongodb.com/manual/tutorial/manage-mongodb-processes/).
+
+Download and install [NodeJS](https://nodejs.org/en/download/).
 
 Run the following command to install dependencies:
 ```shell
