@@ -14,7 +14,8 @@
     "lint": "eslint server.js db.js lib/** controllers/** models/** middleware/**",
     "jsdoc": "jsdoc lib controllers middleware models db.js server.js -r -d doc/jsdoc",
     "watch": "watch \"npm run build:js\" ui/src/js",
-    "deploy": "browserify ui/src/js/app.jsx -t babelify | uglifyjs -c > ui/dist/js/bundle.js && build:css"
+    "deploy": "aws ssm send-command --document-name \"AWS-RunPowerShellScript\" --instance-ids \"i-0886c4904ce0134f2\" --parameters commands=[\"forever stop server.js\",\"git pull\",\"forever start server.js\"] --timeout-seconds 600 --region us-west-2",
+    "create:instance": "aws opsworks --region us-east-1 create-instance --hostname myinstance1 --instance-type t2.micro --os \"Amazon Linux\""
   },
   "babel": {
     "presets": [
