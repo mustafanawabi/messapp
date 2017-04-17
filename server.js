@@ -24,7 +24,7 @@ app.get('env') == 'test' ? url = 'mongodb://localhost:27017/messapp-test' :
 db.connect(url);
 
 // set port
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 80);
 
 // start server
 let server = app.listen(app.get('port'), function() {
