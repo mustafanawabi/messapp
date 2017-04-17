@@ -10,6 +10,7 @@ Download and install [MongoDB](https://www.mongodb.com/download-center). **Mongo
 
 Download and install [NodeJS](https://nodejs.org/en/download/).
 
+### Installation
 Run the following command to install dependencies:
 ```shell
 npm install
