@@ -129,15 +129,20 @@ npm test
 ```
 
 ## Additional npm Scripts
-`npm build:js` builds the project
+`npm run build:js` builds the project
 
-`npm build:css` minifies stylesheets
+`npm run build:css` minifies stylesheets
 
-`npm lint` executes eslint
+`npm run lint` executes eslint
 
-`npm jsdoc` generates jsdoc
+`npm run jsdoc` generates jsdoc
 
-`npm watch` builds the project when changes to the ui code are detected
+`npm run watch` builds the project when changes to the ui code are detected
+
+#### In progress npm scripts (they do not work at the moment)
+`npm run deploy` deploys the app to an AWS instance
+
+`npm run create:instance` create an AWS EC2 Windows instance
 
 ## License
 Code released under the MIT License.
