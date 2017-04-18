@@ -131,6 +131,8 @@ npm test
 ## Additional npm Scripts
 `npm run build:js` builds the project
 
+'npm run buid:js:min' builds the project with minified files
+
 `npm run build:css` minifies stylesheets
 
 `npm run lint` executes eslint
