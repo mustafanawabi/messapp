@@ -129,7 +129,7 @@ npm test
 ```
 ## Docker Container
 You can generate Docker images and run containers by executing the following command:
-`docker-compose up --build`
+`npm run build:docker`
 
 This will use the docker-compose.yml file to create two containers, one for app on port 3000 and one of the db on port 27017. It will then run these containers.
 
