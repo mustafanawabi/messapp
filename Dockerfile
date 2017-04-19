@@ -1,15 +1,16 @@
-FROM node:boron
+FROM node:alpine
 
-# Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+# Add package to image
+ADD package.json /tmp/package.json
 
-# Install app dependencies
-COPY package.json /usr/src/app/
-RUN npm install
+RUN cd /tmp && npm install
 
-# Bundle app source
-COPY . /usr/src/app
+RUN mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app/
 
-EXPOSE 80
-CMD [ "npm", "start" ]
+WORKDIR /opt/app
+
+ADD . /opt/app
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

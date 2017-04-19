@@ -19,12 +19,12 @@ app.use('/api/messages', require('./controllers/messages.js'));
 
 // connect to the db based on env variable
 let url;
-app.get('env') == 'test' ? url = 'mongodb://localhost:27017/messapp-test' :
-                           url = 'mongodb://localhost:27017/messapp';
+app.get('env') == 'test' ? url = 'mongodb://mongo/messapp-test' :
+                           url = 'mongodb://mongo/messapp';
 db.connect(url);
 
 // set port
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 3000);
 
 // start server
 let server = app.listen(app.get('port'), function() {

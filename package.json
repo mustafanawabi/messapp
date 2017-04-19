@@ -4,7 +4,8 @@
   "description": "App for posting messages and checking if they are palindromes",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start:server": "node server.js",
+    "start": "node --use-strict server.js",
     "start:debug": "set DEBUG=express:* & node server.js",
     "test": "npm run test:unit & npm run test:system",
     "test:unit": "mocha test/unit --reporter spec --recursive",
