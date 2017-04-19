@@ -21,11 +21,23 @@ app.use('/api/messages', require('./controllers/messages.js'));
 let url;
 let coll;
 let dbHost;
-app.get('env') == 'test'? coll = 'messapp-test' :
-						  coll = 'messapp';
+let env = app.get('env');
 
-process.argv[2] == 'docker'	? dbHost = 'mongo' :
-							  dbHost = 'localhost';
+switch (app.get('env')) {
+  case 'test':
+    coll = 'messapp-test';
+    dbHost = 'localhost';
+    break;
+  case 'docker':
+    coll = 'messapp';
+    dbHost = 'mongo';
+    break;
+  default:
+    coll = 'messapp';
+    dbHost = 'localhost';
+    break;
+ 
+}
 
 url = 'mongodb://' + dbHost + '/' + coll;
 db.connect(url);

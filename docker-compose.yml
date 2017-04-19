@@ -6,6 +6,8 @@ services:
       - "3000:3000"
     links:
       - mongo
+    environment:
+      NODE_ENV: docker
   mongo:
     image: mongo
     volumes:
