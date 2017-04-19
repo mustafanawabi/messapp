@@ -23,7 +23,7 @@ Or to start the server in debug mode:
 ```shell
 npm run start:debug
 ```
-To open the UI, navigate to `http://localhost:8080/` in your browser.
+To open the UI, navigate to `http://localhost:3000/` in your browser.
 
 ## REST APIs
 Messapp exposes REST APIs to post, retrieve all messages, retrieve a specific message, delete a message or check if an existing message is a palindrome.
@@ -34,7 +34,7 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 #### Messages API
 ##### _`GET /api/messages`_ returns messages as an array of JSON objects.
 
-`http://localhost:8080/api/messages` will return:
+`http://localhost:3000/api/messages` will return:
 
 `[
   {
@@ -48,7 +48,7 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 
 ##### _`GET /api/messages/{id}`_ returns a message based on the id as JSON.
 
-`http://localhost:8080/api/messages/58f1ca74c5521508e0335015/` will return:
+`http://localhost:3000/api/messages/58f1ca74c5521508e0335015/` will return:
 
 `{
   "_id": "58f1ca74c5521508e0335015",
@@ -60,7 +60,7 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 
 ##### _`GET /api/messages/{id}/palindrome`_ returns true if the message is a palindrome, false otherwise.
 
-`http://localhost:8080/api/messages/58f1ca74c5521508e0335015/palindrome` will return:
+`http://localhost:3000/api/messages/58f1ca74c5521508e0335015/palindrome` will return:
 
 `{
   "palindrome": false
@@ -68,7 +68,7 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 
 ##### _`POST /api/messages/`_ returns the newly message as JSON. The payload needs to have the property 'text' defined.
 
-`http://localhost:8080/api/messages` with payload `{text: 'sample text'}` will return:
+`http://localhost:3000/api/messages` with payload `{text: 'sample text'}` will return:
 
 `{
   "text": "sample text",
@@ -80,7 +80,7 @@ All APIs start with `/api`, followed by entity name (`/messages`) and specific r
 
 ##### `DELETE /api/messages/{id}` deletes a message based on the id and returns no content.
 
-`http://localhost:8080/api/messages/58f2fb7d90ef821a741122c1`
+`http://localhost:3000/api/messages/58f2fb7d90ef821a741122c1`
 
 ## Architecture
 Messapp can be split into two main components: Server and UI.
@@ -127,6 +127,11 @@ Run the following command to execute all the tests:
 ```shell
 npm test
 ```
+## Docker Container
+You can generate Docker images and run containers by executing the following command:
+`docker-compose up --build`
+
+This will use the docker-compose.yml file to create two containers, one for app on port 3000 and one of the db on port 27017. It will then run these containers.
 
 ## Additional npm Scripts
 `npm run build:js` builds the project
