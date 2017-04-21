@@ -5,7 +5,7 @@ let assert = require('chai').assert;
 let server = require('../../server');
 let db = require('../../db');
 let request = require('request');
-let url = 'http://localhost:' + (process.env.PORT || 8080) + '/api/messages';
+let url = 'http://localhost:' + (process.env.PORT || 3000) + '/api/messages';
 const MESSAGES_COLLECTION = 'messages';
 
 before(function() {
